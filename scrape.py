@@ -18,9 +18,8 @@ def scrape_website(website):
     print("Launching chrome browser...")
 
     # Set a writable cache directory
-    os.environ["WDM_LOCAL"] = "1"
-    os.environ["WDM_CACHE_DIR"] = "\tmp\wdm"
-    os.makedirs("\tmp\wdm", exist_ok=True)
+    os.environ["WDM_CACHE_DIR"] = "/tmp/wdm"
+    os.makedirs("/tmp/wdm", exist_ok=True)
 
     # # chrome_driver_path = "chromedriver.exe"
     options = webdriver.ChromeOptions()
@@ -43,7 +42,8 @@ def scrape_website(website):
     # driver = webdriver.Chrome(options=options)
 
 
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver_path = webdriver.Chrome(ChromeDriverManager().install())
+    driver = webdriver.Chrome(executable_path=driver_path, options=options)
 
     # Randomize window size to avoid obvious automation
     width = random.randint(1200, 1920)
