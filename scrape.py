@@ -17,30 +17,32 @@ from webdriver_manager.chrome import ChromeDriverManager
 def scrape_website(website):
     print("Launching chrome browser...")
 
+    # Set a writable cache directory
+    os.environ["WDM_LOCAL"] = "1"
+    os.environ["WDM_CACHE_DIR"] = "/tmp/wdm"
+    os.makedirs("/tmp/wdm", exist_ok=True)
+
     # # chrome_driver_path = "chromedriver.exe"
-    # # options = webdriver.ChromeOptions()
+    options = webdriver.ChromeOptions()
     # # options = uc.ChromeOptions()
     # # Set a writable directory for the driver
     # os.environ["CHROMEDRIVER_AUTOINSTALLER_PATH"] = "/tmp/chromedriver"
     # chromedriver_autoinstaller.install()
-    # options = webdriver.ChromeOptions()
 
-    # options.add_argument("--headless")  # run Chrome in headless mode
-    # options.add_argument("--disable-gpu")  # optional: disables GPU hardware acceleration
-    # options.add_argument("--no-sandbox")  # optional: required for some Linux environments
-    # options.add_argument("--lang=en-US,en")
+    options.add_argument("--headless")  # run Chrome in headless mode
+    options.add_argument("--disable-gpu")  # optional: disables GPU hardware acceleration
+    options.add_argument("--no-sandbox")  # optional: required for some Linux environments
+    options.add_argument("--lang=en-US,en")
     
-    # # Set a custom user-agent to avoid basic bot detection
-    # user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-    # options.add_argument(f"--user-agent={user_agent}")
+    # Set a custom user-agent to avoid basic bot detection
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    options.add_argument(f"--user-agent={user_agent}")
     
     # # driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)
     # # driver = uc.Chrome(options=options)
     # driver = webdriver.Chrome(options=options)
 
-    # Set a writable cache directory
-    os.environ["WDM_LOCAL"] = "1"
-    os.environ["WDM_CACHE_DIR"] = "/tmp/wdm"
+
     driver = webdriver.Chrome(ChromeDriverManager().install())
 
     # Randomize window size to avoid obvious automation
