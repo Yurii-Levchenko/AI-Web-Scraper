@@ -6,16 +6,20 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import random
 from selenium.webdriver.common.action_chains import ActionChains
-import undetected_chromedriver as uc
+# import undetected_chromedriver as uc
 # import selenium.webdriver as webdriver
 # from selenium.webdriver.chrome.service import Service
+import chromedriver_autoinstaller
+from selenium import webdriver
 
 def scrape_website(website):
     print("Launching chrome browser...")
 
     # chrome_driver_path = "chromedriver.exe"
     # options = webdriver.ChromeOptions()
-    options = uc.ChromeOptions()
+    # options = uc.ChromeOptions()
+    chromedriver_autoinstaller.install()
+    options = webdriver.ChromeOptions()
 
     options.add_argument("--headless")  # run Chrome in headless mode
     options.add_argument("--disable-gpu")  # optional: disables GPU hardware acceleration
@@ -27,7 +31,8 @@ def scrape_website(website):
     options.add_argument(f"--user-agent={user_agent}")
     
     # driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)
-    driver = uc.Chrome(options=options)
+    # driver = uc.Chrome(options=options)
+    driver = webdriver.Chrome(options=options)
 
     # Randomize window size to avoid obvious automation
     width = random.randint(1200, 1920)
