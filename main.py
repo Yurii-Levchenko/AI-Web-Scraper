@@ -51,7 +51,7 @@ else:
         parse_description = st.text_area("What info do you want to retrieve?")
 
         # Backend selection
-        backend = st.selectbox("Choose AI backend", ["ollama", "openai"], format_func=lambda x: "Ollama (local)" if x=="ollama" else "OpenAI (cloud)")
+        backend = st.selectbox("Choose AI backend", ["openai", "ollama"], format_func=lambda x: "OpenAI (cloud)" if x=="openai" else "Ollama (local)")
 
         if st.button("Parse Content"):
             with st.spinner("Parsing the content with AI..."):
