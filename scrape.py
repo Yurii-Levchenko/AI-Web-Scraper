@@ -23,7 +23,9 @@ def scrape_website(website):
     print("Launching Firefox browser...")
 
     github_token = st.secrets.get("GITHUB_TOKEN", os.environ.get("GITHUB_TOKEN"))
-    service = Service(GeckoDriverManager(github_token=github_token).install())
+    # service = Service(GeckoDriverManager(github_token=github_token).install())
+    if github_token:
+        os.environ["GH_TOKEN"] = github_token
 
     firefoxOptions = Options()
     firefoxOptions.add_argument("--headless")
