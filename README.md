@@ -55,10 +55,19 @@ An advanced, cloud-ready web scraping application with a modern Streamlit UI, Go
    ```
 
 3. **Set up secrets**
-   - Add your `OPENAI_API_KEY` and (optionally) `GITHUB_TOKEN` to `.streamlit/secrets.toml`:
+   - Configure Authentication Credentials. Add your `OPENAI_API_KEY` and (optionally) `GITHUB_TOKEN` to `.streamlit/secrets.toml`:
      ```toml
      OPENAI_API_KEY = "sk-..."
      GITHUB_TOKEN = "ghp-..."
+
+     [auth]
+     redirect_uri="http://localhost:8501/oauth2callback" # your localhost
+     cookie_secret="???" # generate random
+
+     [auth.google]
+     client_id="???"
+     client_secret="???"
+     server_metadata_url="https://accounts.google.com/.well-known/openid-configuration" # depends on your host
      ```
 
 4. **(For cloud) Add Firefox to packages.txt**
@@ -77,24 +86,22 @@ An advanced, cloud-ready web scraping application with a modern Streamlit UI, Go
 
 - **Streamlit Community Cloud:**  
   Push to GitHub and deploy directly.
-- **Custom Server:**  
-  Install Firefox and run as above.
 
 ---
 
 ## 📝 Usage
 
-1. **Log in with Google.**
-2. **Enter a website URL** to scrape.
-3. **Describe what you want to extract** (e.g., "List all main titles in a table").
-4. **Choose AI backend** (OpenAI or Ollama).
-5. **View and download results.**
+1. **Log in with Google**
+2. **Enter a website URL** to scrape
+3. **Describe what you want to extract** (e.g., "List all main titles in a table")
+4. **Choose AI backend** (Currently supported: OpenAI [gpt-4o-mini])
+5. **View results**
 
 ---
 
 ## 🧠 Example Prompts
 
-- "Extract all product names and prices."
+- "Extract all product names and prices. Form a table of them."
 - "Summarize the main news headlines."
 - "List all links on the page."
 
@@ -124,4 +131,4 @@ MIT License
 
 ---
 
-> **Made with ❤️ by [Your Name]**
+> **Feel free to contact the author**
