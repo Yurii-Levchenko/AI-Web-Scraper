@@ -17,9 +17,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
+import streamlit as st
 
 def scrape_website(website):
     print("Launching Firefox browser...")
+
+    github_token = st.secrets.get("GITHUB_TOKEN", os.environ.get("GITHUB_TOKEN"))
+    service = Service(GeckoDriverManager(github_token=github_token).install())
 
     firefoxOptions = Options()
     firefoxOptions.add_argument("--headless")
