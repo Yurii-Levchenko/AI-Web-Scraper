@@ -19,8 +19,8 @@ def scrape_website(website):
 
     # Set a writable cache directory
     os.environ["WDM_LOCAL"] = "1"
-    os.environ["WDM_CACHE_DIR"] = "/tmp/wdm"
-    os.makedirs("/tmp/wdm", exist_ok=True)
+    os.environ["WDM_CACHE_DIR"] = "\tmp\wdm"
+    os.makedirs("\tmp\wdm", exist_ok=True)
 
     # # chrome_driver_path = "chromedriver.exe"
     options = webdriver.ChromeOptions()
