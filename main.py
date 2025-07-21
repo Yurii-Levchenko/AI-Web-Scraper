@@ -10,7 +10,7 @@ import streamlit_authenticator as stauth
 
 # st.json(st.user)
 
-if not st.user.is_logged_in:
+if not st.user["is_logged_in"]:
     st.title("AI Web Scraper")
     if st.button("Authenticate with Google to proceed"):
         st.login("google")
@@ -61,3 +61,5 @@ else:
                     st.write(result)
                 except Exception as e:
                     st.error("Failed to parse content with AI. Please ensure the selected AI backend is running and the model is available.\nError: {}".format(e))
+
+    st.button("Log out", on_click=st.logout)
