@@ -1,5 +1,3 @@
-import selenium.webdriver as webdriver
-from selenium.webdriver.chrome.service import Service
 import time
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
@@ -8,20 +6,28 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import random
 from selenium.webdriver.common.action_chains import ActionChains
+import undetected_chromedriver as uc
+# import selenium.webdriver as webdriver
+# from selenium.webdriver.chrome.service import Service
 
 def scrape_website(website):
     print("Launching chrome browser...")
 
-    chrome_driver_path = "chromedriver.exe"
-    options = webdriver.ChromeOptions()
+    # chrome_driver_path = "chromedriver.exe"
+    # options = webdriver.ChromeOptions()
+    options = uc.ChromeOptions()
+
     options.add_argument("--headless")  # run Chrome in headless mode
     options.add_argument("--disable-gpu")  # optional: disables GPU hardware acceleration
     options.add_argument("--no-sandbox")  # optional: required for some Linux environments
     options.add_argument("--lang=en-US,en")
+    
     # Set a custom user-agent to avoid basic bot detection
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
     options.add_argument(f"--user-agent={user_agent}")
-    driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)
+    
+    # driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)
+    driver = uc.Chrome(options=options)
 
     # Randomize window size to avoid obvious automation
     width = random.randint(1200, 1920)

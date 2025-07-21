@@ -1,3 +1,4 @@
 env-scrape/
 .env
 .streamlit/
+chromedriver.exe
